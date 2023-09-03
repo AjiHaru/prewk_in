@@ -1,0 +1,331 @@
+@mixin mq {
+  @media (max-width: 900px) {
+    @content;
+  }
+}
+
+header {
+  background: white;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0; /*これをつけないとspace-betweenが効かない*/
+  // padding: 40px 226px 0;
+  z-index: 1;
+  img {
+    width: 180px;
+    height: 21px;
+  }
+}
+
+.wrapper {
+  margin: 0 auto;
+  padding: 0 40px;
+  max-width: 1360px;
+}
+
+main {
+  margin-top: 110px;
+}
+
+// ハンバーガーメニューウィンドウ
+nav {
+  display: none; /*最初は非表示*/
+  .hamburger {
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 40px;
+    transition: opacity 0.8s ease;
+    visibility: hidden;
+    li {
+      line-height: 42px;
+    }
+  }
+}
+
+header.active {
+  nav {
+    display: block;
+    // z-index: 10;
+    .hamburger.active {
+      width: 100%;
+      height: 100vh;
+      background-color: black;
+      color: white;
+      opacity: 0.75;
+      visibility: visible;
+      padding: 40px;
+    }
+  }
+}
+
+// ハンバーガーメニュー
+.menu {
+  display: block;
+  width: 36px;
+  height: 80px;
+  cursor: pointer;
+  transition: 0.4s;
+  position: relative;
+  span {
+    width: 32px;
+    height: 2px;
+    background: black;
+    position: absolute;
+    right: 0;
+    transition: 0.4s ease-in-out;
+  }
+}
+
+// 1本目の線
+.menu span:nth-child(1) {
+  top: 35px;
+}
+// 2本目の線
+.menu span:nth-child(2) {
+  top: 45px;
+}
+
+// ×アイコン
+.menu.active {
+  z-index: 50;
+  span:nth-child(1) {
+    background-color: #fff;
+    transform: rotate(-45deg);
+    top: 40px;
+  }
+  span:nth-child(2) {
+    background-color: #fff;
+    transform: rotate(45deg);
+    top: 40px;
+  }
+}
+
+// Products
+.Products {
+  h2 {
+    font-size: 0.85rem;
+    padding-bottom: 2rem;
+  }
+}
+
+// Productsグリッドレイアウト
+.container {
+  display: grid;
+  grid-template-rows: 360px 360px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  justify-items: center;
+  gap: 32px;
+  margin-bottom: 40px;
+  li {
+    width: 100%;
+    height: auto;
+  }
+  li:hover {
+    cursor: pointer;
+    opacity: 0.75;
+  }
+  p {
+    // font-size: 0.75rem;
+    line-height: 1rem;
+  }
+  img {
+    width: 100%;
+    height: 290px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+  }
+}
+.container-page2 {
+  display: grid;
+  grid-template-rows: 400px;
+  grid-template-columns: 25% 25% 25% 25%;
+  justify-items: center;
+  li {
+    max-width: 290px;
+    height: auto;
+  }
+  li:hover {
+    cursor: pointer;
+    opacity: 0.75;
+  }
+  p {
+    // font-size: 0.75rem;
+    line-height: 1rem;
+  }
+  img {
+    width: 100%;
+    height: 290px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+  }
+}
+
+@include mq {
+  .container {
+    display: grid;
+    grid-template-rows: 360px 360px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    justify-items: center;
+    img {
+      width: 100%;
+      max-height: 385px;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+  }
+  .container-page2 {
+    display: grid;
+    grid-template-rows: 400px 400px;
+    grid-template-columns: 50% 50%;
+    justify-items: center;
+  }
+}
+
+// ItemPage
+.contents {
+  display: flex;
+}
+
+// View More
+.MoreItem {
+  text-align: center;
+}
+p:hover {
+  opacity: 0.75;
+}
+
+// Page Link
+.MorePage {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin: 50px auto;
+  li:hover {
+    opacity: 0.75;
+  }
+}
+
+// footer
+.info {
+  padding: 40px 20px;
+  display: flex;
+  justify-content: space-between;
+  @include mq {
+    display: block;
+    line-height: 1.5rem;
+  }
+  .SNS-menu {
+    display: flex;
+    gap: 32px;
+    font-size: 0.75rem;
+  }
+  p {
+    font-size: 0.65rem;
+  }
+}
+
+// item page
+.contents {
+  margin-top: 30px;
+  display: flex;
+  gap: 50px;
+  width: 63%;
+  img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+  }
+  .product-text {
+    display: block;
+  }
+  p {
+    margin-bottom: 3rem;
+    font-size: 0.95rem;
+  }
+  .info {
+    display: block;
+    .dtdd {
+      display: flex;
+      dt {
+        font-weight: normal;
+        width: 110px;
+      }
+    }
+  }
+}
+.back {
+  text-align: center;
+  margin: 60px 100px;
+}
+
+// about page
+.about-content {
+  width: 50%;
+  @include mq {
+    width: 100%;
+  }
+  h2 {
+    margin-bottom: 3rem;
+  }
+  p {
+    margin-bottom: 3rem;
+    font-size: 0.95rem;
+    line-height: 1.5rem;
+  }
+}
+
+// company page
+.company-info {
+  margin: 32px 0;
+  width: 50%;
+  line-height: 3rem;
+  @include mq {
+    width: 75%;
+  }
+}
+
+.dtdd-company {
+  display: flex;
+  @include mq {
+    display: block;
+    font-size: 0.85rem;
+    padding-left: 0.5rem;
+  }
+  dt {
+    font-weight: normal;
+    width: 200px;
+    @include mq {
+      line-height: 2rem;
+    }
+  }
+  dd {
+    @include mq {
+      line-height: 2rem;
+      padding-bottom: 1rem;
+    }
+  }
+}
+
+.dtdd-company + .dtdd-company {
+  border-top: solid 0.5px rgb(220, 219, 219);
+}
+
+.map {
+  iframe {
+    width: 50%;
+    height: 300px;
+    object-fit: cover;
+    filter: grayscale(100%);
+    margin-bottom: 100px;
+    @include mq {
+      width: 75%;
+    }
+  }
+}
